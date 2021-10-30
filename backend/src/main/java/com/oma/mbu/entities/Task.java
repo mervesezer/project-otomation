@@ -4,12 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.Date;
-import java.util.UUID;
+import javax.persistence.*;
+
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,4 +16,10 @@ public class Task extends BaseEntity {
     private String name;
     private String description;
     private boolean isCompleted;
+    @ManyToOne()
+    @JoinColumn(name = "project_id")
+    private Project project;
+    @ManyToOne()
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
 }
