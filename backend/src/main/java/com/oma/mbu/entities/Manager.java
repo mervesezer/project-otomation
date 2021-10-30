@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -13,13 +14,10 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table
-public class Manager {
-    @Id
-    @GeneratedValue(generator = "uuid")
-    private UUID managerId;
+@Entity
+public class Manager extends BaseEntity{
     private String name;
     private String lastName;
     private String email;
     private String password;
-    private Date dateCreated;
 }
