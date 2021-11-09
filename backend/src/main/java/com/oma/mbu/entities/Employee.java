@@ -21,6 +21,4 @@ public class Employee extends BaseEntity{
     private List<Task> tasks;
     @ManyToMany
     private List<Project> projects;
-
-
 }

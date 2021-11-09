@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 public class TaskDto {
     @NotNull
-    @Size(min = 2,message = "gorev adi en az 2 karakter olmali")
+    @Size(min = 2)
     private String name;
     @NotNull
     private String description;
