@@ -1,6 +1,5 @@
 package com.oma.mbu.dtos;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -12,7 +11,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 public class EmployeeDto {
     @NotNull
-    @Size(min = 2, message = "calisan adi en az 2 karakter olmali")
+    @Size(min = 2)
     private String name;
     @NotNull
     private String lastName;
@@ -20,6 +19,7 @@ public class EmployeeDto {
     @NotNull
     private String email;
     @NotNull
+    @Size(min = 6)
     private String password;
 
 }

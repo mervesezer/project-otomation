@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 public class ManagerDto {
     @NotNull
-    @Size(min = 2, message = "yonetici adi en az 2 karakter olmali")
+    @Size(min = 2)
     private String name;
     @NotNull
     private String lastName;
