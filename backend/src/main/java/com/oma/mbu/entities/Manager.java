@@ -15,11 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Table
 @Entity
-public class Manager extends BaseEntity{
-    private String name;
-    private String lastName;
-    private String email;
-    private String password;
-    @OneToMany(mappedBy = "manager",fetch = FetchType.LAZY)
+public class Manager extends BaseUser {
+    @OneToMany(mappedBy = "manager", fetch = FetchType.LAZY)
     private List<Project> projects;
 }

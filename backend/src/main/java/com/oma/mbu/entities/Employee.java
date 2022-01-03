@@ -12,11 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Employee extends BaseEntity{
-    private String name;
-    private String lastName;
-    private String email;
-    private String password;
+public class Employee extends BaseUser{
     @OneToMany(mappedBy = "employee")
     private List<Task> tasks;
     @ManyToMany

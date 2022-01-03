@@ -11,6 +11,7 @@ import com.oma.mbu.repositories.EmployeeRepository;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -21,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final ModelMapper modelMapper;
+    private final PasswordEncoder passwordEncoder;
 
     public List<Employee> findAll() {
         return employeeRepository.findAll();
@@ -39,6 +41,7 @@ public class EmployeeService {
 
         var newEmployee = modelMapper.map(employeeDto, Employee.class);
         newEmployee.setDateCreated(new Date());
+        newEmployee.setPassword(passwordEncoder.encode(newEmployee.getPassword()));
 
         employeeRepository.save(newEmployee);
     }
