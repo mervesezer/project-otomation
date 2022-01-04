@@ -1,9 +1,9 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import { useAuth } from "./context/AuthContext";
-import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Projects from "./pages/Projects";
 
 function RequireAuth({ children }) {
   const { authUser } = useAuth();
@@ -26,7 +26,7 @@ export default function App() {
           </RequireAuth>
         }
       >
-        <Route index element={<Home />} />
+        <Route index element={<Projects />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />

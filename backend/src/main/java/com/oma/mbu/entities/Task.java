@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Data
 @AllArgsConstructor
@@ -14,11 +16,16 @@ import javax.persistence.*;
 @Entity
 public class Task extends BaseEntity {
     private String name;
+
     private String description;
+
     private boolean isCompleted;
+
     @ManyToOne()
+    @JsonIgnore()
     @JoinColumn(name = "project_id")
     private Project project;
+
     @ManyToOne()
     @JoinColumn(name = "employee_id")
     private Employee employee;
