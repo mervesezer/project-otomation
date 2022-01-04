@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
 @Data
@@ -15,7 +18,8 @@ import java.util.List;
 @NoArgsConstructor
 @Table
 @Entity
+@JsonIgnoreProperties(value = { "projects", "handler", "hibernateLazyInitializer" }, allowSetters = true)
 public class Manager extends BaseUser {
-    @OneToMany(mappedBy = "manager", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "manager", fetch = FetchType.EAGER)
     private List<Project> projects;
 }

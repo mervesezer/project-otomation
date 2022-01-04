@@ -1,5 +1,6 @@
 package com.oma.mbu.services;
 
+import java.util.Date;
 import java.util.List;
 
 import com.oma.mbu.dtos.ProjectDto;
@@ -30,6 +31,7 @@ public class ProjectService {
 
         Project project = modelMapper.map(projectDto, Project.class);
         project.setManager(manager);
+        project.setDateCreated(new Date());
 
         projectRepository.save(project);
     }

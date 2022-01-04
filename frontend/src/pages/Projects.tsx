@@ -9,13 +9,11 @@ export default function Projects() {
   );
 
   return (
-    <div>
-      <h1>Projects</h1>
-
+    <div className="flex flex-wrap justify-center gap-10">
       {isLoading ? (
         <h1>Yükleniyor</h1>
       ) : (
-        data.map((item) => <ProjectCard project={item} />)
+        data.map((item) => <ProjectCard key={item.id} project={item} />)
       )}
     </div>
   );
