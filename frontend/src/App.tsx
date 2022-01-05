@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import Projects from "./pages/Projects";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
+import Project from "./pages/Project";
 
 function RequireAuth({ children }) {
   const { authUser } = useAuth();
@@ -28,8 +29,8 @@ export default function App() {
           </RequireAuth>
         }
       >
-     
         <Route index element={<Projects />} />
+        <Route path="/project/:id" element={<Project />} />
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/settings" element={<Settings/>}/>
       </Route>
