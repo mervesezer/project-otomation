@@ -1,6 +1,7 @@
 import { useAuth } from "../../context/AuthContext";
 import { GoProject } from "react-icons/go";
 import { Link } from "react-router-dom";
+import Profile from "../../pages/Profile";
 
 export default function Sidebar() {
   const { authUser } = useAuth();
@@ -68,8 +69,9 @@ export default function Sidebar() {
                 stroke-linejoin="round"
               />
             </svg>
-
-            <span className="mx-4 font-medium">Accounts</span>
+            <Link to={"/profile"}>
+              <span className="mx-4 font-medium">Profil</span>
+            </Link>
           </a>
 
           <a
@@ -119,8 +121,10 @@ export default function Sidebar() {
                 stroke-linejoin="round"
               />
             </svg>
-
-            <span className="mx-4 font-medium">Settings</span>
+            
+            <Link to={"/settings"}>
+              <span className="mx-4 font-medium">Ayarlar</span>
+            </Link>
           </a>
 
           <hr className="my-6 border-gray-200 dark:border-gray-600" />
