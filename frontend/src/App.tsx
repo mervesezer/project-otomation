@@ -4,6 +4,7 @@ import { useAuth } from "./context/AuthContext";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Projects from "./pages/Projects";
+import Project from "./pages/Project";
 
 function RequireAuth({ children }) {
   const { authUser } = useAuth();
@@ -27,6 +28,7 @@ export default function App() {
         }
       >
         <Route index element={<Projects />} />
+        <Route path="/project/:id" element={<Project />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />

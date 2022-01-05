@@ -7,11 +7,11 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
-  const { name, description, manager, dateCreated } = project;
+  const { id, name, description, manager, dateCreated } = project;
   return (
     <div className="bg-white rounded-lg shadow-md w-96">
       <div className="px-8 py-4">
-        <Link to={"/project/bisey"}>
+        <Link to={`/project/${id}`}>
           <h1 className="text-2xl">{name}</h1>
         </Link>
         <div className="mt-3">
