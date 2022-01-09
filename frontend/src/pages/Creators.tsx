@@ -5,7 +5,7 @@ const creatorsData = [
     email: "l1821012020@ogr.sdu.edu.tr",
     image: "/merve.jpg",
     location: "Edirne",
-    name: "Artun Çolak",
+    name: "Talat Artun Çolak",
     no: "1821012020",
   },
   {
@@ -16,11 +16,11 @@ const creatorsData = [
     no: "1821012012",
   },
   {
-    email: "l1821012010@ogr.sdu.edu.tr",
+    email: "l1821012016@ogr.sdu.edu.tr",
     image: "/merve.jpg",
     location: "Demre",
     name: "Osman Avcı",
-    no: "1821012010",
+    no: "1821012016",
   },
 ];
 
@@ -29,6 +29,7 @@ export default function Creators() {
     <div className="flex justify-around items-center h-full">
       {creatorsData.map(({ email, image, location, name, no }) => (
         <CreatorCard
+          key={no}
           email={email}
           image={image}
           location={location}

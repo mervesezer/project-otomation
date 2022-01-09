@@ -35,7 +35,7 @@ export default function UpdateTaskModal({
   );
 
   return (
-    <Modal label="Görev Ekle" {...rest}>
+    <Modal label="Görev Güncelle" {...rest}>
       <form
         className="flex flex-col gap-3"
         onSubmit={async (e) => {
@@ -64,7 +64,7 @@ export default function UpdateTaskModal({
           data={isEmployeesLoading ? [] : employeesData}
           onSelect={(id) => setSelectedEmployeeId(id)}
         />
-        <Button text="Ekle" disabled={isTaskAdding} loading={isTaskAdding} />
+        <Button text="Güncelle" disabled={isTaskAdding} loading={isTaskAdding} />
       </form>
     </Modal>
   );

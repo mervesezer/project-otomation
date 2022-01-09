@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import AddTaskModal from "../components/AddTaskModal";
 import DeleteTaskModal from "../components/DeleteTaskModal";
 import Button from "../components/ui/Button";
+import UpdateTaskModal from "../components/UpdateTaskModal";
 import { useAuth } from "../context/AuthContext";
 import projectService from "../services/projectService";
 
@@ -26,7 +27,9 @@ export default function Project() {
 
   const [addTaskModalVisible, setAddTaskModalVisible] = useState(false);
   const [deleteTaskModalVisible, setDeleteTaskModalVisible] = useState(false);
+  const [updateTaskModalVisible, setUpdateTaskModalVisible] = useState(false);
   const [taskIdToDelete, setTaskIdToDelete] = useState<string>(null);
+  const [taskIdToUpdate, setTaskIdToUpdate] = useState<string>(null);
 
   if (isProjectDataLoading || isTasksLoading) {
     return null;
@@ -143,7 +146,13 @@ export default function Project() {
                             {authUser.type === "manager" ? (
                               <>
                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                  <button className="text-blue-600 hover:text-blue-900">
+                                  <button
+                                    className="text-blue-600 hover:text-blue-900"
+                                    onClick={() => {
+                                      setTaskIdToUpdate(taskId);
+                                      setUpdateTaskModalVisible(true);
+                                    }}
+                                  >
                                     <FiEdit size={20} />
                                   </button>
                                 </td>
@@ -208,6 +217,15 @@ export default function Project() {
               await refetchTasks();
             }}
             setVisible={setDeleteTaskModalVisible}
+          />
+          <UpdateTaskModal
+            visible={updateTaskModalVisible}
+            onClickX={() => setUpdateTaskModalVisible(false)}
+            projectId={id}
+            refetchTasks={async () => {
+              await refetchTasks();
+            }}
+            setVisible={setUpdateTaskModalVisible}
           />
         </>
       ) : null}
