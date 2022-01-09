@@ -147,8 +147,10 @@ export default function Sidebar() {
                 stroke-linejoin="round"
               />
             </svg>
-
-            <span className="mx-4 font-medium">Tickets</span>
+             <Link to={"/creators"}>
+             <span className="mx-4 font-medium">Yapan Kişiler</span>
+             </Link>
+           
           </a>
 
           <a

@@ -1,4 +1,5 @@
 import { useAuth } from "../context/AuthContext";
+import Settings from "./Settings";
 
 
 export default function Profile() {
@@ -21,6 +22,7 @@ export default function Profile() {
                     </div>
                 </div>
             </div>
+            <Settings/>
 
         </div>
     )
