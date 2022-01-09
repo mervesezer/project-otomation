@@ -1,6 +1,7 @@
 import { useState } from "react";
+import Button from "../components/ui/Button";
+import Input from "../components/ui/Input";
 import { useAuth } from "../context/AuthContext";
-
 
 export default function Ayarlar() {
   const { authUser } = useAuth();
@@ -12,14 +13,14 @@ export default function Ayarlar() {
     <div>
       <section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-3xl dark:bg-gray-800">
         <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white">
-           Profil Ayarları
+          Profil Ayarları
         </h2>
 
         <form>
-          <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2 ">
             <div>
               <label className="text-gray-700 dark:text-gray-200">Ad</label>
-              <input
+              <Input
                 id="username"
                 value={name}
                 type="text"
@@ -30,7 +31,7 @@ export default function Ayarlar() {
 
             <div>
               <label className="text-gray-700 dark:text-gray-200">Soyad</label>
-              <input
+              <Input
                 id="soyad"
                 type="text"
                 value={lastName}
@@ -40,7 +41,7 @@ export default function Ayarlar() {
             </div>
             <div>
               <label className="text-gray-700 dark:text-gray-200">Email</label>
-              <input
+              <Input
                 id="email"
                 type="email"
                 value={email}
@@ -51,7 +52,7 @@ export default function Ayarlar() {
 
             <div>
               <label className="text-gray-700 dark:text-gray-200">Şifre</label>
-              <input
+              <Input
                 id="password"
                 type="password"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
@@ -62,7 +63,7 @@ export default function Ayarlar() {
               <label className="text-gray-700 dark:text-gray-200">
                 Şifre Tekrar
               </label>
-              <input
+              <Input
                 id="passwordConfirmation"
                 type="password"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
@@ -71,12 +72,9 @@ export default function Ayarlar() {
           </div>
 
           <div className="flex justify-end mt-6">
-            <button className="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
-              Güncelle
-            </button>
+            <Button text="Güncelle"/>
           </div>
         </form>
-        
       </section>
     </div>
   );
