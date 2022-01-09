@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
 @Data
@@ -12,7 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Employee extends BaseUser{
+@JsonIgnoreProperties(value = { "projects", "tasks" })
+public class Employee extends BaseUser {
     @OneToMany(mappedBy = "employee")
     private List<Task> tasks;
     @ManyToMany

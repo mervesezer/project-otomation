@@ -1,7 +1,6 @@
 import { useAuth } from "../../context/AuthContext";
 import { GoProject } from "react-icons/go";
 import { Link } from "react-router-dom";
-import Profile from "../../pages/Profile";
 
 export default function Sidebar() {
   const { authUser } = useAuth();

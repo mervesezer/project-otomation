@@ -2,7 +2,7 @@ import { HTMLAttributes, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { FiX } from "react-icons/fi";
 
-interface ModalProps extends HTMLAttributes<HTMLDivElement> {
+export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   visible?: boolean;
   label?: string;
   onClickX?: () => void;
