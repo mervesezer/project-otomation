@@ -12,12 +12,14 @@ interface UpdateTaskModalProps extends ModalProps {
   projectId: string;
   refetchTasks: () => Promise<void>;
   setVisible: Dispatch<SetStateAction<boolean>>;
+  taskIdToUpdate: string;
 }
 
 export default function UpdateTaskModal({
   projectId,
   refetchTasks,
   setVisible,
+  taskIdToUpdate,
   ...rest
 }: UpdateTaskModalProps) {
   const [selectedEmployeeId, setSelectedEmployeeId] = useState<string>(null);
@@ -29,9 +31,13 @@ export default function UpdateTaskModal({
     async () => await employeeService.findAll()
   );
 
-  const { isLoading: isTaskAdding, mutateAsync: addTask } = useMutation(
+  const { isLoading: isUpdating, mutateAsync: updateTask } = useMutation(
     async (createTaskRequest: CreateTaskRequest) =>
-      await projectService.saveTaskByProjectId(projectId, createTaskRequest)
+      await projectService.updateTask(
+        projectId,
+        taskIdToUpdate,
+        createTaskRequest
+      )
   );
 
   return (
@@ -40,23 +46,28 @@ export default function UpdateTaskModal({
         className="flex flex-col gap-3"
         onSubmit={async (e) => {
           e.preventDefault();
-          await addTask({ name, description, employeeId: selectedEmployeeId });
-          await refetchTasks();
+
+          await updateTask({
+            name,
+            description,
+            employeeId: selectedEmployeeId,
+          });
+
           setDescription("");
           setName("");
           setSelectedEmployeeId(null);
+
+          await refetchTasks();
           setVisible(false);
         }}
       >
         <Input
           placeholder="İsim"
-          required
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <Input
           placeholder="Açıklama"
-          required
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
@@ -64,7 +75,7 @@ export default function UpdateTaskModal({
           data={isEmployeesLoading ? [] : employeesData}
           onSelect={(id) => setSelectedEmployeeId(id)}
         />
-        <Button text="Güncelle" disabled={isTaskAdding} loading={isTaskAdding} />
+        <Button text="Güncelle" disabled={isUpdating} loading={isUpdating} />
       </form>
     </Modal>
   );

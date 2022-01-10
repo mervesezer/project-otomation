@@ -29,6 +29,7 @@ export default function SelectEmployeeDropdown({
 
         <button
           className="rounded-md border-gray-300 border px-2"
+          type="button"
           onClick={() => setIsDataShown(!isDataShown)}
         >
           {isDataShown ? (
@@ -51,6 +52,7 @@ export default function SelectEmployeeDropdown({
               <button
                 className="py-1 flex gap-3 hover:bg-gray-100 w-full rounded-md px-2 items-center"
                 key={id}
+                type="button"
                 onClick={() => {
                   setInputValue(`${name} ${lastName}`);
                   setIsDataShown(false);

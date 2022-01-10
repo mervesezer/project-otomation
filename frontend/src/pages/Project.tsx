@@ -226,6 +226,7 @@ export default function Project() {
               await refetchTasks();
             }}
             setVisible={setUpdateTaskModalVisible}
+            taskIdToUpdate={taskIdToUpdate}
           />
         </>
       ) : null}

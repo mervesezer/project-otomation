@@ -10,6 +10,10 @@ class EmployeeService {
   async save(registerRequest: RegisterRequest): Promise<void> {
     await axiosService.post("/employees", registerRequest);
   }
+
+  async update(id:string, registerRequest:RegisterRequest){
+    await axiosService.put(`/employees/${id}`, registerRequest);
+  }
 }
 
 export default new EmployeeService();

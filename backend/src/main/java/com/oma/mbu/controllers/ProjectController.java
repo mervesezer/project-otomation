@@ -69,4 +69,14 @@ public class ProjectController {
             @RequestBody @Valid UpdateTaskDto updateTaskDto) {
         projectService.updateTaskByProjectId(projectId, taskId, updateTaskDto);
     }
+
+    @PostMapping("/{projectId}/tasks/{taskId}/complete")
+    public void completeTaskByProjectIdAndTaskId(@PathVariable UUID projectId, @PathVariable UUID taskId) {
+        projectService.completeTaskByProjectIdAndTaskId(projectId, taskId);
+    }
+
+    @PostMapping("/{projectId}/tasks/{taskId}/incomplete")
+    public void incompleteTaskByProjectIdAndTaskId(@PathVariable UUID projectId, @PathVariable UUID taskId) {
+        projectService.incompleteTaskByProjectIdAndTaskId(projectId, taskId);
+    }
 }

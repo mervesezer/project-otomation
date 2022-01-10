@@ -94,4 +94,17 @@ public class ProjectService {
 
         taskRepository.save(task);
     }
+
+    public void completeTaskByProjectIdAndTaskId(UUID projectId, UUID taskId) {
+        Task task = findTaskById(projectId, taskId);
+        task.setCompleted(true);
+
+        taskRepository.save(task);
+    }
+    public void incompleteTaskByProjectIdAndTaskId(UUID projectId, UUID taskId) {
+        Task task = findTaskById(projectId, taskId);
+        task.setCompleted(false);
+
+        taskRepository.save(task);
+    }
 }
