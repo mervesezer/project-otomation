@@ -63,7 +63,7 @@ public class ManagerService {
             manager.setLastName(updateManagerDto.getLastName());
 
         if (updateManagerDto.getPassword() != null)
-            manager.setPassword(updateManagerDto.getPassword());
+            manager.setPassword(passwordEncoder.encode(updateManagerDto.getPassword()));
 
         managerRepository.save(manager);
     }

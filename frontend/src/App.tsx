@@ -7,6 +7,7 @@ import Projects from "./pages/Projects";
 import Profile from "./pages/Profile";
 import Project from "./pages/Project";
 import Creators from "./pages/Creators";
+import Task from "./pages/Task";
 
 function RequireAuth({ children }) {
   const { authUser } = useAuth();
@@ -31,9 +32,9 @@ export default function App() {
       >
         <Route index element={<Projects />} />
         <Route path="/project/:id" element={<Project />} />
-        <Route path="/profile" element={<Profile/>}/>
-        <Route path="/creators" element={<Creators/>}/>
-        
+        <Route path="/project/:projectId/task/:taskId" element={<Task />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/creators" element={<Creators />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />

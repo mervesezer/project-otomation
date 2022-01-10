@@ -1,32 +1,47 @@
 import { useState } from "react";
+import { useMutation } from "react-query";
 import { Link, useNavigate } from "react-router-dom";
-import Alert from "../components/ui/Alert";
 import Button from "../components/ui/Button";
 import Input from "../components/ui/Input";
 import { useAuth } from "../context/AuthContext";
-import LoginRequest from "../models/LoginRequest";
-import authService from "../services/authService";
+import RegisterRequest from "../models/RegisterRequest";
+import employeeService from "../services/employeeService";
+import managerService from "../services/managerService";
 
 export default function Register() {
-  const { setAuthUser } = useAuth();
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [type, setType] = useState("employee");
 
-  const handleLogin = async () => {
-    setIsLoading(true);
-    try {
-      const data = await authService.login({ email, password });
-      setAuthUser(data.user);
-      navigate("/");
-    } catch (error) {
-      setError(error.response.data.message);
-      setIsLoading(false);
+  const {
+    isLoading: isEmployeeRegistering,
+    mutateAsync: registerEmployee,
+    error: employeeError,
+  } = useMutation(
+    async (registerRequest: RegisterRequest) =>
+      await employeeService.save(registerRequest)
+  );
+
+  const {
+    isLoading: isManagerRegistering,
+    mutateAsync: registerManager,
+    error: managerError,
+  } = useMutation(
+    async (registerRequest: RegisterRequest) =>
+      await managerService.save(registerRequest)
+  );
+
+  const handleRegister = async () => {
+    if (type === "employee") {
+      await registerEmployee({ name, lastName, email, password });
+    } else if (type === "manager") {
+      await registerManager({ name, lastName, email, password });
     }
+    alert("Başarıyla Kayıt Oldunuz");
+    navigate("/login");
   };
 
   return (
@@ -46,7 +61,7 @@ export default function Register() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              handleLogin();
+              handleRegister();
             }}
           >
             <Input
@@ -89,9 +104,11 @@ export default function Register() {
                 <input
                   type="radio"
                   id="manager"
-                  value="Yönetici"
+                  value="manager"
                   name="type"
                   className="mr-1"
+                  checked={type === "manager"}
+                  onChange={(e) => setType(e.target.value)}
                 />
                 <label htmlFor="manager">Yönetici</label>
               </div>
@@ -99,9 +116,11 @@ export default function Register() {
                 <input
                   type="radio"
                   id="employee"
-                  value="Çalışan"
+                  value="employee"
                   name="type"
                   className="mr-1"
+                  checked={type === "employee"}
+                  onChange={(e) => setType(e.target.value)}
                 />
                 <label htmlFor="employee">Çalışan</label>
               </div>
@@ -111,8 +130,8 @@ export default function Register() {
               <Button
                 text="Üye Ol"
                 className="w-full"
-                loading={isLoading}
-                disabled={isLoading}
+                loading={isEmployeeRegistering || isManagerRegistering}
+                disabled={isEmployeeRegistering || isManagerRegistering}
               />
             </div>
 
@@ -125,7 +144,9 @@ export default function Register() {
               </Link>
             </div>
 
-            {error ? <Alert text={error} className="mt-3" /> : null}
+            {/* {managerError || employeeError ? (
+              <Alert text={managerError || employeeError} className="mt-3" />
+            ) : null} */}
           </form>
         </div>
       </div>

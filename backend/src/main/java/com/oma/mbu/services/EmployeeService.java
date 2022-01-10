@@ -63,7 +63,7 @@ public class EmployeeService {
             employee.setLastName(updateEmployeeDto.getLastName());
 
         if (updateEmployeeDto.getPassword() != null)
-            employee.setPassword(updateEmployeeDto.getPassword());
+            employee.setPassword(passwordEncoder.encode(updateEmployeeDto.getPassword()));
 
         employeeRepository.save(employee);
     }
